@@ -41,6 +41,24 @@ searchBtn.addEventListener("click", function () {
   getCovidKey();
 });
 
+let autocomplete;
+function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
+    autocomplete.addListener('place_changed', onPlaceChanged);
+}
+
+function onPlaceChanged() {
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+        document.getElementById('autocomplete').placeholder = 
+        'Enter a place';
+    } else {
+        // document.getElementById('details').innerHTML = place.name;
+        console.log(place)
+    }
+    
+}
+
 //getChecked returns an ARRAY of filters to narrow what displays on the table
 const getChecked = () => {
   //@ marked ARRAY of input type=CHECKBOX
@@ -66,3 +84,4 @@ function makeTables (data, filters) {
   //the way you make these is after iterating
   //table (look at link for further help" https://stackoverflow.com/questions/14643617/create-table-using-javascript)
 }
+

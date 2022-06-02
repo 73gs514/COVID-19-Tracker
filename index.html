@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Covid-19 Tracker</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid-19 Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2VaO0gJnfCF6DydgeBzK0GYgOfST-sIE&libraries=places&callback=initAutocomplete"></script>
 </head>
 <body>
   <section class="hero is-dark">
@@ -125,7 +126,7 @@
                 <div class="field has-addons">
                   <div class="control">
                     <label>Search by country, state, or county</label>
-                    <input class="input" type="text" placeholder="Search for Location" id="search-field">
+                     <input id="autocomplete" type="text" placeholder="Enter a Place"/>
                   </div>
                   <div class="control">
                     <a class="button is-info" id="search-button">Search</a>
@@ -133,7 +134,7 @@
                 </div>
               </form>
             </div>
-  </aside>
+    </aside>
+  <script src="./assets/js/index.js"></script>>>>>>>> main
 </body>
 </html>
-<script src="./assets/js/index.js"></script>
