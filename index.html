@@ -1,82 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Covid-19 Tracker</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2VaO0gJnfCF6DydgeBzK0GYgOfST-sIE&libraries=places&callback=initAutocomplete"></script>
 </head>
-
 <body>
-
-    <section class="hero is-dark">
-        <div class="hero-body">
-            <div class="container" id="heroconatiner">
-                <div class="title">
-                    <h1 id="titlebulma">Covid -19 Tracker App</h1>
-                    <img id="unplash" src="./assets/images/Coid-19.jpg" alt="covid19" />
-                    <h4 id="desc">The app which you can find the Covid 19 cases Location wise</h4>
-                </div>
-
-
-
-            </div>
+  <section class="hero is-dark">
+    <div class="hero-body">
+      <div class="container" id="heroconatiner">
+        <div class="title">
+          <h1 id="titlebulma">Covid-19 Tracker</h1>
+          <img id="unplash" src="./assets/images/Coid-19.jpg" alt="covid19" />
+          <h4 id="desc">The app which you can find the Covid 19 cases Location wise</h4>
         </div>
-    </section>
-    <div class="dropdown is-active">
-        <div class="dropdown-trigger">
-            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
-                <span>Country</span>
-                <span class="icon is-small">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </button>
-        </div>
-        <div class="dropdown-menu" id="dropdown-menu" role="menu">
-            <div class="dropdown-content">
-                <div class="dropdown-item">
-                    <p>USA</p>
-                </div>
-                <hr class="dropdown-divider">
-                <div class="dropdown-item">
-                    <p>UK</p>
-                </div>
-                <hr class="dropdown-divider"> This is a link
-                </a>
-            </div>
-        </div>
+      </div>
     </div>
-    <aside>
-        <section class="section">
-            <div class="container">
-                <div class="columns">
-                    <div class="column is-4">
-                        <!--Search box-->
-                        <div class="notification is-primary is-size-3">
-                            <form id="search-form">
-                                <label class="label">Location Search</label>
-                                <div class="field has-addons">
-                                    <div class="control">
-                                        <input id="autocomplete" type="text" placeholder="Enter a Place"/>
-                                    </div>
-                                    <div class="control">
-                                        <a class="button is-info" id="search-button">Search</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+  </section>
+  <div class="dropdown ">
+    <!-- is-active -->
+    <div class="dropdown-trigger">
+      <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
+        <span>Country</span>
+        <span class="icon is-small">
+          <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </span>
+      </button>
+    </div>
+  </div>
+  <aside>
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-4">
+            <!--Search box-->
+            <div class="notification is-primary is-size-3">
+              <form id="search-form">
+                <!-- Toggle filters -->
+                <button class="button filterBtn"> Filters </button>
+                <!-- The button toggle group (checkboxes) -->
+                <div class="filterOptions hidden">
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Cases
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Deaths
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Positive Tests
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Negative Tests
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Contact Tracers
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Hospital Beds
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Health Service Area Hospital Beds
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    ICU Beds</label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Health Service Area ICU Beds
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    New Cases
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    New Deaths
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Vaccines Distributed
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Vaccinations Initiated
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Vaccinations Completed
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Vaccinations Additional Dose
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Vaccines Administered
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Vaccines Administered Demographics
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Vaccinations Initiated Demographics
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    Risk Levels
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="filter">
+                    CDC Transmission Level
+                  </label>
+                </div>
+                <div class="field has-addons">
+                  <div class="control">
+                    <label>Search by country, state, or county</label>
+                     <input id="autocomplete" type="text" placeholder="Enter a Place"/>
+                  </div>
+                  <div class="control">
+                    <a class="button is-info" id="search-button">Search</a>
+                  </div>
+                </div>
+              </form>
+            </div>
     </aside>
-
-
-
-
-
-
-    <script src="./assets/js/index.js"></script>
-
+  <script src="./assets/js/index.js"></script>>>>>>>> main
 </body>
-
 </html>
