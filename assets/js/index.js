@@ -12,36 +12,37 @@ const table = document.querySelector(".table");
 //@ place STRING optional
 //@ type STING optional
 function getCovidData(apiKey, place, type) {
-  fetch(`https://api.covidactnow.org/v2/states.json?apiKey=${apiKey}`)
-    .then(res => res.json())
-    .then(res => {
-      console.log("covid res", res);
-      //call another function that will display in table
-      makeTables(res, labels);
-    });
+    fetch(`https://api.covidactnow.org/v2/states.json?apiKey=${apiKey}`)
+        .then(res => res.json())
+        .then(res => {
+            console.log("covid res", res);
+            //call another function that will display in table
+            makeTables(res, labels);
+        });
 }
 
-function getCovidKey() { 
-  console.log("inside getCovidKey")
-  fetch("../../apiKeys.json")
-    .then(res => {
-      console.log("inside .then of covidKey()")
-      return res.json();
-    })
-    .then(res => {
-      console.log("res", res);
-      getCovidData(res.covidNowKey);
-    }); 
+function getCovidKey() {
+    console.log("inside getCovidKey")
+    fetch("../../apiKeys.json")
+        .then(res => {
+            console.log("inside .then of covidKey()")
+            return res.json();
+        })
+        .then(res => {
+            console.log("res", res);
+            getCovidData(res.covidNowKey);
+        });
 };
 
-searchBtn.addEventListener("click", function () {
-  //gives you filters
-  getChecked();
-  //give you data
-  getCovidKey();
+searchBtn.addEventListener("click", function() {
+    //gives you filters
+    getChecked();
+    //give you data
+    getCovidKey();
 });
 
 let autocomplete;
+
 function initAutocomplete() {
     autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
     autocomplete.addListener('place_changed', onPlaceChanged);
@@ -50,38 +51,37 @@ function initAutocomplete() {
 function onPlaceChanged() {
     var place = autocomplete.getPlace();
     if (!place.geometry) {
-        document.getElementById('autocomplete').placeholder = 
-        'Enter a place';
+        document.getElementById('autocomplete').placeholder =
+            'Enter a place';
     } else {
         // document.getElementById('details').innerHTML = place.name;
         console.log(place)
     }
-    
+
 }
 
 //getChecked returns an ARRAY of filters to narrow what displays on the table
 const getChecked = () => {
-  //@ marked ARRAY of input type=CHECKBOX
-  let marked = document.getElementsByName("filter");
-  labels = [];
-  //@ m is an individual checkbox elem of ARRAY marked
-  //Each m has an ARRAY of labels of length 1
-  for (let m of marked) {
-    if (m.checked) {
-      labels.push(m.labels[0].innerText.replace(/\s/g, ""));
+    //@ marked ARRAY of input type=CHECKBOX
+    let marked = document.getElementsByName("filter");
+    labels = [];
+    //@ m is an individual checkbox elem of ARRAY marked
+    //Each m has an ARRAY of labels of length 1
+    for (let m of marked) {
+        if (m.checked) {
+            labels.push(m.labels[0].innerText.replace(/\s/g, ""));
+        }
     }
-  }
-  console.log(labels);
+    console.log(labels);
 }
 
-function toggleFilter () {
+function toggleFilter() {
 
 }
 
-function makeTables (data, filters) {
-  //for the columns take the length of filters
-  //for the rows, make a check to only read the data that has the words that filters has.
-  //the way you make these is after iterating
-  //table (look at link for further help" https://stackoverflow.com/questions/14643617/create-table-using-javascript)
+function makeTables(data, filters) {
+    //for the columns take the length of filters
+    //for the rows, make a check to only read the data that has the words that filters has.
+    //the way you make these is after iterating
+    //table (look at link for further help" https://stackoverflow.com/questions/14643617/create-table-using-javascript)
 }
-
