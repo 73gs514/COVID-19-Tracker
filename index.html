@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2VaO0gJnfCF6DydgeBzK0GYgOfST-sIE&libraries=places&callback=initAutocomplete"></script>
 </head>
 
 <body>
@@ -56,10 +57,10 @@
                         <!--Search box-->
                         <div class="notification is-primary is-size-3">
                             <form id="search-form">
-                                <label class="label">Recipe Search</label>
+                                <label class="label">Location Search</label>
                                 <div class="field has-addons">
                                     <div class="control">
-                                        <input class="input" type="text" placeholder="Search for Location" id="search-field">
+                                        <input id="autocomplete" type="text" placeholder="Enter a Place"/>
                                     </div>
                                     <div class="control">
                                         <a class="button is-info" id="search-button">Search</a>

@@ -18,3 +18,14 @@ fetch('https://api.github.com/users')
             }
         })
     })*/
+
+
+let autocomplete;
+function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
+    autocomplete.addlistener('place_changed', onPlaceChanged);
+}
+
+function onPlaceChanged() {
+    
+}
