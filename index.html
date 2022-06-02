@@ -5,37 +5,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Covid Data Tracker</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
 <body>
 
-    <section class="hero is-light">
+    <section class="hero is-dark">
         <div class="hero-body">
-            <div class="container" id="heroconatiner">
-                <div class="title">
-                    <h1 id="titlebulma">Covid -19 Tracker App</h1>
+            <div class="container" id="heroContainer">
+                <div class="titleHero">
+                    <h1 id="title">Covid-19 Data Tracker</h1>
                 </div>
-                <div class="subtitle">
-                    <h4 id=subtitle>App which gives the information about Covid Data according to search by Location</h4>
-                </div>
+                </br>
+                <h4 id="subtitle">An app for finding Covid-19 Data</h4>
+
             </div>
+
+
+        </div>
         </div>
     </section>
-    <main>
+    <!-- End of Top part of page-->
+    <!--Search Section-->
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-4">
+                    <!--Search box-->
+                    <div class="notification is-primary is-size-3">
+                        <form id="search-form">
+                            <label class="label">Search</label>
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Search by zipcode Country or city" id="search-field">
+                                </div>
+                                <div class="control">
+                                    <a class="button is-info" id="search-button">Search</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
-        <div class="card">
-            <div class="serch">
-                <input type="text" class="search" placeholder="Enter Zipcode country or city ">
 
-                <button><i class="fa fa-search"></i></button>
-            </div>
-        </div>
-    </main>
+                    <!--Search Result-->
+
+                    <div class="notification has-background-grey-lighter" id="search-history">
+                        <label class="label">Search Result</label></div>
+                    <div class="column is-4">
+                        <div class="columns is-centered">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th><abbr title="Data">Data</abbr></th>
+                                        <th>New Cases</th>
+                                        <th>Death</th>
+                                        <th>Vaccination</th>
+                                        <th>Recovery</th>
+
+                                    </tr>
+                                </thead>
+
+                        </div>
 
 
 
@@ -45,7 +79,7 @@
 
 
 
-    <script src="./assets/js/index.js"></script>
+                        <script src="./assets/js/index.js"></script>
 
 </body>
 

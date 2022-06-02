@@ -1,60 +1,26 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    font-size: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    /*background-image: url('https://media.istockphoto.com/photos/mutating-virus-variant-picture-id1356114754?b=1&k=20&m=1356114754&s=170667a&w=0&h=yhp_uWIHKe0XewFgZ6birWy61Sl4LJsHtXsQ0n-nRmc=');*/
-    background-position: center;
+    font-weight: bolder;
 }
 
-.conatiner {
-    margin: 0;
-    padding: 0;
-}
-
-#herocontainer {
-    background-color: aquamarine;
-}
-
-.title {
+.titleHero {
     display: flex;
     justify-content: center;
+}
+
+#title {
+    display: flex;
+    text-align: center;
 }
 
 #subtitle {
     display: flex;
-    justify-content: center;
-    color: blue;
-}
-
-#titlebulma {
-    position: relative;
     text-align: center;
-    top: 10px;
-    color: brown;
-    font-size: 35px;
-    font-weight: bolder;
+    justify-content: center;
 }
 
 .hero-body {
     padding-bottom: 0px;
     padding-top: 30px;
-    background-color: aquamarine;
-}
-
-.card {
-    padding: 2em;
-    margin: 1em;
-    border-radius: 30px;
-    width: 100%;
-    max-width: 420px;
-    background-color: black;
-}
-
-.search {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
 }
