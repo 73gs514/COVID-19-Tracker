@@ -4,6 +4,7 @@ let data;
 let labels = [];
 const searchBtn = document.querySelector("#search-button");
 const filterBtn = document.querySelector(".filterBtn");
+// const filterOptions =
 const table = document.querySelector(".table");
 
 //returns the covid data in full
@@ -17,7 +18,7 @@ function getCovidData(apiKey, place, type) {
     .then(res => {
       console.log("covid res", res);
       //call another function that will display in table
-      makeTables(res, labels);
+      // makeTables(res, labels);
     });
 }
 
@@ -56,9 +57,21 @@ const getChecked = () => {
   console.log(labels);
 }
 
-function toggleFilter () {
+function toggleFilter (event) {
+  console.log("filterBtn");
+  let element = event.target;
 
+  if(element.matches(".filterBtn")) {
+    console.log("matches", element.classList);
+    if(element.classList.indexOf("hidden")) {
+      console.log("hidden")
+    }
+  }
 }
+
+filterBtn.addEventListener("click", function (e) {
+  toggleFilter(e);
+});
 
 function makeTables (data, filters) {
   //for the columns take the length of filters
