@@ -1,20 +1,27 @@
-//console.log("hello");
-//var apiUrl = 'https://api.github.com/users'
-//var apiUrl = 'https://api.github.com/users/' + user + '/repos';
-fetch('https://api.github.com/users')
+/*fetch('https://maps.googleapis.com/maps/api/js?key=AIzaSyAvtL8SNJZ5JLCOhISbQgAbuxPhUnM2YTw')*/
+fetch('http://example.com/movies.json')
 
 .then(res => res.json())
+    .then((data) => {
+        console.log(data);
+    });
 
-.then(data => {
-    console.log(data);
-    /* if (data.lenght > 0) {
-         var temp = "";
-         data.forEach(element => {
-             temp += '<tr>';
-             temp += '<td>' + element.totCase + '<td>';*/
+/*document.querySelector('#search-form').addEventListener('submit', getLocationinfo);
 
-});
-/* document.getElementById('data').innerHTML = temp;
-            }
-        })
-    })*/
+function getLocationinfo(event) {
+    //const res= document.querySelector('.search-result').va
+    fetch('https://maps.googleapis.com/maps/api/js?key=AIzaSyAvtL8SNJZ5JLCOhISbQgAbuxPhUnM2YTw')
+        .then(async res => (res.json())); {
+        try {
+            const data = await response.json()
+
+            console.log('response data?', data);
+        } catch (error) {
+            console,
+            log("Error is here");
+        }
+    }
+}
+
+
+getLocationinfo();*/
