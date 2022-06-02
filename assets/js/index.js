@@ -12,17 +12,17 @@ const table = document.querySelector(".table");
 //@ apiKey STRING Required
 //@ place STRING optional
 //@ type STING optional
-function getCovidData(apiKey, place, type) {
-  fetch(`https://api.covidactnow.org/v2/states.json?apiKey=${apiKey}`)
+function getCovidData(apiKey, place) {
+  fetch(`https://api.covidactnow.org/v2/state/NY.json?apiKey=${apiKey}`)
     .then(res => res.json())
     .then(res => {
       console.log("covid res", res);
       //call another function that will display in table
-      // makeTables(res, labels);
+      makeTables(res, labels);
     });
 }
 
-function getCovidKey() { 
+function getCovidKey() {
   console.log("inside getCovidKey")
   fetch("../../apiKeys.json")
     .then(res => {
@@ -32,7 +32,7 @@ function getCovidKey() {
     .then(res => {
       console.log("res", res);
       getCovidData(res.covidNowKey);
-    }); 
+    });
 };
 
 searchBtn.addEventListener("click", function () {
@@ -57,14 +57,18 @@ const getChecked = () => {
   console.log(labels);
 }
 
-function toggleFilter (event) {
+function toggleFilter(event) {
   console.log("filterBtn");
   let element = event.target;
-
-  if(element.matches(".filterBtn")) {
-    console.log("matches", element.classList);
-    if(element.classList.indexOf("hidden")) {
-      console.log("hidden")
+  let filterGroup = querySelector(".filterOptions");
+  if (element.matches(".filterBtn")) {
+    console.log("matches", filterGroup);
+    if (element.classList.contains("hidden")) {
+      element.classList.replace("hidden", "visible");
+      console.log("new list", element.classList)
+    } else {
+      element.classList.replace("visible", "hidden");
+      console.log("new list", element.classList);
     }
   }
 }
@@ -73,7 +77,25 @@ filterBtn.addEventListener("click", function (e) {
   toggleFilter(e);
 });
 
-function makeTables (data, filters) {
+//@filter ARRAY of STRINGS
+//@data ARRAY of OBJs
+function makeTables(data, filters) {
+  // console.log("makeTables")
+  // console.log(data, filters);
+  for (d of data) {
+    console.log("for loop", d);
+    // let row = document.element("tr");
+    for (f of filters) {
+      let propName = f.charAt(0).toLowerCase() + f.substring(1);
+      console.log("word", propName);
+      if (d.actuals[propName]) {
+        console.log("found", d.actuals[propName]);
+        //make a table row
+      } else {
+        console.log("not found");
+      }
+    }
+  }
   //for the columns take the length of filters
   //for the rows, make a check to only read the data that has the words that filters has.
   //the way you make these is after iterating

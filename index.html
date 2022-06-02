@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Covid-19 Tracker</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
   <section class="hero is-dark">
@@ -28,16 +29,16 @@
             <div class="notification is-primary is-size-3">
               <form id="search-form">
                 <!-- Toggle filters -->
-                <a class="button filterBtn hidden"> Filters </a>
+                <a class="button filterBtn"> Filters </a>
                 <!-- The button toggle group (checkboxes) -->
-                <div class="filterOptions">
+                <div class="filterOptions hidden">
                   <label class="checkbox">
                     <input type="checkbox" name="filter">
                     Cases
                   </label>
                   <label class="checkbox">
                     <input type="checkbox" name="filter">
-                    Deaths
+                    deaths
                   </label>
                   <label class="checkbox">
                     <input type="checkbox" name="filter">
