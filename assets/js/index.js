@@ -1,7 +1,10 @@
 // global variables
 let key;
 let data;
+let labels = [];
 const searchBtn = document.querySelector("#search-button");
+const filterBtn = document.querySelector(".filterBtn");
+const table = document.querySelector(".table");
 
 //returns the covid data in full
 //will give this inform to function that makes a table
@@ -14,6 +17,7 @@ function getCovidData(apiKey, place, type) {
     .then(res => {
       console.log("covid res", res);
       //call another function that will display in table
+      makeTables(res, labels);
     });
 }
 
@@ -31,19 +35,17 @@ function getCovidKey() {
 };
 
 searchBtn.addEventListener("click", function () {
+  //gives you filters
   getChecked();
+  //give you data
   getCovidKey();
 });
-
-
-
-
 
 //getChecked returns an ARRAY of filters to narrow what displays on the table
 const getChecked = () => {
   //@ marked ARRAY of input type=CHECKBOX
   let marked = document.getElementsByName("filter");
-  let labels = [];
+  labels = [];
   //@ m is an individual checkbox elem of ARRAY marked
   //Each m has an ARRAY of labels of length 1
   for (let m of marked) {
@@ -52,4 +54,15 @@ const getChecked = () => {
     }
   }
   console.log(labels);
+}
+
+function toggleFilter () {
+
+}
+
+function makeTables (data, filters) {
+  //for the columns take the length of filters
+  //for the rows, make a check to only read the data that has the words that filters has.
+  //the way you make these is after iterating
+  //table (look at link for further help" https://stackoverflow.com/questions/14643617/create-table-using-javascript)
 }
