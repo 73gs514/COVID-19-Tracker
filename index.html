@@ -8,8 +8,6 @@
   <title>Covid-19 Tracker</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/style.css">
-  <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2VaO0gJnfCF6DydgeBzK0GYgOfST-sIE&libraries=places&callback=initAutocomplete"></script>
 </head>
 
 <body>
@@ -119,7 +117,7 @@
                 <div class="field has-addons">
                   <div class="control">
                     <label>Search by country, state, or county</label>
-                    <input class="input" type="text" placeholder="Search for Location" id="search-field">
+                    <input class="input" type="text" placeholder="Search for Location" id="autocomplete">
                   </div>
                   <div class="control">
                     <a class="button is-info" id="search-button">Search</a>
@@ -134,7 +132,10 @@
     <table class="results-table">
     </table>
   </aside>
+  <script src="./assets/js/index.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2VaO0gJnfCF6DydgeBzK0GYgOfST-sIE&libraries=places&callback=initAutocomplete">
+    </script>
 </body>
 
 </html>
-<script src="./assets/js/index.js"></script>
