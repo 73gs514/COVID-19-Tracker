@@ -6,16 +6,13 @@
     
 }
 
-
 html,
 body {
     display: block;
     align-items: center;
-    margin: 10px;
     background-color: rgb(129, 170, 172);
     border-radius: 10px;
     font-size: 16 px;
-    max-width:  1200px;
     width: 100%;
     ;
 }
@@ -25,23 +22,16 @@ head    {
 }
 
 section {
-    background-color: rgb(152, 202, 206);
-    border: solid rgb(205, 131, 131);
-    border-radius: 5px;
-    margin: 10px;
+    background-color: rgb(255, 255, 255);
+ 
 }
 
-
-
 #unplash {
-    border: solid rgb(234, 162, 162);
+    border: solid rgb(255, 255, 255);
     border-radius: 5px;
     width: 350px;
     height: 250px;
-
-    
-
-
+    margin-left: 20px;
 }
 
 #herocontainer {    
@@ -55,9 +45,11 @@ section {
     display: flex;
     flex-direction: row;
     justify-content: space-between ;
+    margin: 20px;
 
 }
 
 .information-logo {
     font-size: 30px;
 }
+
