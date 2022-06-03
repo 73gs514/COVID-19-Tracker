@@ -1,0 +1,26 @@
+body {
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+}
+
+.titleHero {
+    display: flex;
+    justify-content: center;
+}
+
+#title {
+    display: flex;
+    text-align: center;
+}
+
+#subtitle {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.hero-body {
+    padding-bottom: 0px;
+    padding-top: 30px;
+}
