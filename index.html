@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Covid-19 Tracker</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2VaO0gJnfCF6DydgeBzK0GYgOfST-sIE&libraries=places&callback=initAutocomplete"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Covid-19 Tracker</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2VaO0gJnfCF6DydgeBzK0GYgOfST-sIE&libraries=places&callback=initAutocomplete"></script>
 </head>
 
 <body>
@@ -21,37 +22,28 @@
                 </div>
             </div>
         </div>
-    </section>
-    <div class="dropdown ">
-        <!-- is-active -->
-        <div class="dropdown-trigger">
-            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
-        <span>Country</span>
-        <span class="icon is-small">
-          <i class="fas fa-angle-down" aria-hidden="true"></i>
-        </span>
-      </button>
-        </div>
+      </div>
     </div>
-    <aside>
-        <section class="section">
-            <div class="container">
-                <div class="columns">
-                    <div class="column is-4">
-                        <!--Search box-->
-                        <div class="notification is-primary is-size-3">
-                            <form id="search-form">
-                                <!-- Toggle filters -->
-                                <button class="button filterBtn"> Filters </button>
-                                <!-- The button toggle group (checkboxes) -->
-                                <div class="filterOptions hidden">
-                                    <label class="checkbox">
+  </section>
+  <aside>
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-4">
+            <!--Search box-->
+            <div class="notification is-primary is-size-3">
+              <form id="search-form">
+                <!-- Toggle filters -->
+                <a class="button filterBtn"> Filters </a>
+                <!-- The button toggle group (checkboxes) -->
+                <div class="filterOptions hidden">
+                  <label class="checkbox">
                     <input type="checkbox" name="filter">
                     Cases
                   </label>
                                     <label class="checkbox">
                     <input type="checkbox" name="filter">
-                    Deaths
+                    deaths
                   </label>
                                     <label class="checkbox">
                     <input type="checkbox" name="filter">
@@ -124,20 +116,25 @@
                     <input type="checkbox" name="filter">
                     CDC Transmission Level
                   </label>
-                                </div>
-                                <div class="field has-addons">
-                                    <div class="control">
-                                        <label>Search by country, state, or county</label>
-                                        <input id="autocomplete" type="text" placeholder="Enter a Place" />
-                                    </div>
-                                    <div class="control">
-                                        <a class="button is-info" id="search-button">Search</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-    </aside>
-    <script src="./assets/js/index.js"></script>>>>>>>> main
+                </div>
+                <div class="field has-addons">
+                  <div class="control">
+                    <label>Search by country, state, or county</label>
+                    <input class="input" type="text" placeholder="Search for Location" id="search-field">
+                  </div>
+                  <div class="control">
+                    <a class="button is-info" id="search-button">Search</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <table class="results-table">
+    </table>
+  </aside>
 </body>
-
 </html>
+<script src="./assets/js/index.js"></script>
