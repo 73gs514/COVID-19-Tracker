@@ -12,6 +12,7 @@ const table = document.querySelector(".results-table");
 //@ apiKey STRING Required
 //@ place STRING optional
 //@ type STING optional
+
 function getCovidData(apiKey, place) {
   fetch(`https://api.covidactnow.org/v2/states.json?apiKey=${apiKey}`)
     .then(res => res.json())
@@ -25,23 +26,43 @@ function getCovidKey() {
     .then(res => getCovidData(res.covidNowKey));
 };
 
-searchBtn.addEventListener("click", function () {
-  //gives you filters
-  getChecked();
-  //give you data
-  getCovidKey();
+searchBtn.addEventListener("click", function() {
+    //gives you filters
+    getChecked();
+    //give you data
+    getCovidKey();
 });
+
+let autocomplete;
+
+function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
+    autocomplete.addListener('place_changed', onPlaceChanged);
+}
+
+function onPlaceChanged() {
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+        document.getElementById('autocomplete').placeholder =
+            'Enter a place';
+    } else {
+        // document.getElementById('details').innerHTML = place.name;
+        console.log(place)
+    }
+
+}
 
 //getChecked returns an ARRAY of filters to narrow what displays on the table
 const getChecked = () => {
-  //@ marked ARRAY of input type=CHECKBOX
-  let marked = document.getElementsByName("filter");
-  labels = [];
-  //@ m is an individual checkbox elem of ARRAY marked
-  //Each m has an ARRAY of labels of length 1
-  for (let m of marked) {
-    if (m.checked) {
-      labels.push(m.labels[0].innerText.replace(/\s/g, ""));
+    //@ marked ARRAY of input type=CHECKBOX
+    let marked = document.getElementsByName("filter");
+    labels = [];
+    //@ m is an individual checkbox elem of ARRAY marked
+    //Each m has an ARRAY of labels of length 1
+    for (let m of marked) {
+        if (m.checked) {
+            labels.push(m.labels[0].innerText.replace(/\s/g, ""));
+        }
     }
   }
 }
