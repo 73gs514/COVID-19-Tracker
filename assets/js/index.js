@@ -49,7 +49,6 @@ function onPlaceChanged() {
     // document.getElementById('details').innerHTML = place.name;
     console.log(place)
   }
-
 }
 
 //getChecked returns an ARRAY of filters to narrow what displays on the table
