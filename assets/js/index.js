@@ -4,7 +4,7 @@ let data;
 let labels = [];
 const searchBtn = document.querySelector("#search-button");
 const filterBtn = document.querySelector(".filterBtn");
-// const filterOptions =
+const filterOptions = document.querySelector(".filterOptions")
 const table = document.querySelector(".table");
 
 //returns the covid data in full
@@ -60,15 +60,15 @@ const getChecked = () => {
 function toggleFilter(event) {
   console.log("filterBtn");
   let element = event.target;
-  let filterGroup = querySelector(".filterOptions");
+  let filterGroup = document.querySelector(".filterOptions");
   if (element.matches(".filterBtn")) {
     console.log("matches", filterGroup);
-    if (element.classList.contains("hidden")) {
-      element.classList.replace("hidden", "visible");
-      console.log("new list", element.classList)
+    if (filterOptions.classList.contains("hidden")) {
+      filterOptions.classList.replace("hidden", "visible");
+      console.log("new list", filterOptions.classList)
     } else {
-      element.classList.replace("visible", "hidden");
-      console.log("new list", element.classList);
+      filterOptions.classList.replace("visible", "hidden");
+      console.log("new list", filterOptions.classList);
     }
   }
 }
