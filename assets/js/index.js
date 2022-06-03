@@ -13,26 +13,16 @@ const table = document.querySelector(".table");
 //@ place STRING optional
 //@ type STING optional
 function getCovidData(apiKey, place) {
-  fetch(`https://api.covidactnow.org/v2/state/NY.json?apiKey=${apiKey}`)
+  fetch(`https://api.covidactnow.org/v2/states.json?apiKey=${apiKey}`)
     .then(res => res.json())
-    .then(res => {
-      console.log("covid res", res);
-      //call another function that will display in table
-      makeTables(res, labels);
-    });
+    //call another function that will display in table
+    .then(res => makeTables(res, labels));
 }
 
 function getCovidKey() {
-  console.log("inside getCovidKey")
   fetch("../../apiKeys.json")
-    .then(res => {
-      console.log("inside .then of covidKey()")
-      return res.json();
-    })
-    .then(res => {
-      console.log("res", res);
-      getCovidData(res.covidNowKey);
-    });
+    .then(res =>  res.json())
+    .then(res => getCovidData(res.covidNowKey));
 };
 
 searchBtn.addEventListener("click", function () {
@@ -54,29 +44,16 @@ const getChecked = () => {
       labels.push(m.labels[0].innerText.replace(/\s/g, ""));
     }
   }
-  console.log(labels);
 }
 
 function toggleFilter(event) {
-  console.log("filterBtn");
   let element = event.target;
-<<<<<<< Updated upstream
   let filterGroup = document.querySelector(".filterOptions");
   if (element.matches(".filterBtn")) {
-    console.log("matches", filterGroup);
     if (filterOptions.classList.contains("hidden")) {
       filterOptions.classList.replace("hidden", "visible");
-      console.log("new list", filterOptions.classList)
     } else {
       filterOptions.classList.replace("visible", "hidden");
-      console.log("new list", filterOptions.classList);
-=======
-
-  if(element.matches(".filterBtn")) {
-    console.log("matches", element.classList);
-    if(element.classList.contains("hidden")) {
-      console.log("hidden")
->>>>>>> Stashed changes
     }
   }
 }
@@ -88,19 +65,27 @@ filterBtn.addEventListener("click", function (e) {
 //@filter ARRAY of STRINGS
 //@data ARRAY of OBJs
 function makeTables(data, filters) {
-  // console.log("makeTables")
-  // console.log(data, filters);
-  for (d of data) {
-    console.log("for loop", d);
-    // let row = document.element("tr");
-    for (f of filters) {
-      let propName = f.charAt(0).toLowerCase() + f.substring(1);
-      console.log("word", propName);
-      if (d.actuals[propName]) {
-        console.log("found", d.actuals[propName]);
-        //make a table row
-      } else {
-        console.log("not found");
+  console.log("makeTables", data)
+  //If filters is empty make a table with all of the data
+  if (filterBtn.length === 0) {
+    for (d of data) {
+      //make the rows and columns
+    }
+  } else {
+    //check if data is iterable
+    console.log(data.length, filters);
+    for (d of data) {
+      console.log("for loop", d);
+      // let row = document.element("tr");
+      for (f of filters) {
+        let propName = f.charAt(0).toLowerCase() + f.substring(1);
+        console.log("word", propName);
+        if (d.actuals[propName]) {
+          console.log("found", d.actuals[propName]);
+          //make a table row
+        } else {
+          console.log("not found");
+        }
       }
     }
   }
