@@ -1,6 +1,11 @@
+<<<<<<< Updated upstream
 .hidden{
   display: none;
   border: solid red;
+=======
+.hidden {
+  display: none;
+>>>>>>> Stashed changes
 }
 
 .visible {

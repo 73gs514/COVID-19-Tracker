@@ -60,6 +60,7 @@ const getChecked = () => {
 function toggleFilter(event) {
   console.log("filterBtn");
   let element = event.target;
+<<<<<<< Updated upstream
   let filterGroup = document.querySelector(".filterOptions");
   if (element.matches(".filterBtn")) {
     console.log("matches", filterGroup);
@@ -69,6 +70,13 @@ function toggleFilter(event) {
     } else {
       filterOptions.classList.replace("visible", "hidden");
       console.log("new list", filterOptions.classList);
+=======
+
+  if(element.matches(".filterBtn")) {
+    console.log("matches", element.classList);
+    if(element.classList.contains("hidden")) {
+      console.log("hidden")
+>>>>>>> Stashed changes
     }
   }
 }
