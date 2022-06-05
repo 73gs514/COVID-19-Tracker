@@ -91,22 +91,89 @@ function isIterable(obj) {
 //@data ARRAY of OBJs
 function makeTables(data, filters) {
   console.log("isIterable", !isIterable(data));
+  console.log("data", data.actuals)
   let tableBody = document.createElement("tbody");
+  let headText = document.createTextNode("State");
+  let stateText = document.createTextNode(data.state)
+  let thead1 = document.createElement("th");
+  let thead2 = document.createElement("th");
+  thead1.appendChild(headText);
+  thead2.appendChild(stateText);
+  table.appendChild(thead1)
+  table.appendChild(thead2);
   //If object is not iterable
+  //check if data is iterable
   if (!isIterable(data)) {
     //get all the keys for the table headers
-    let headers = Object.keys(data);
+    let headers = Object.keys(data.actuals);
     console.log(headers);
     if (filters.length === 0) {
-      for (d of data.actuals) {
-        //make the rows and columns
-        console.log("d.actuals", d);
-        let row = document.createElement("tr");
-        let cell = document.createElement("td");
-        let cellText = document.createTextNode(d);
+      let row = document.createElement("tr");
+      let cell = document.createElement("td");
+      let cellText = document.createTextNode("hello");
+      for (let i = 0; i < headers.length; i++) {
+        
+        for (h of headers) {
+          let row = document.createElement("tr");
+          let cell = document.createElement("td");
+          let cellText = document.createTextNode("ur looking fo me");
+          cell.appendChild(cellText);
+          row.appendChild(cell);
+          table.appendChild(row);
+          //make the rows and columns
+        }
       }
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+      table.appendChild(row);
+
+      table.appendChild(tableBody);
+      table.setAttribute("border", "2");
     }
   }
+  // else if (isIterable(data)) {
+  //   if (filters.length > 0) {
+  //     for (let i = 0; i < filters.length; i++) {
+  //       let headText = document.createTextNode(filters[i]);
+  //       let thead = document.createElement("th");
+  //       thead.appendChild(headText);
+  //       table.appendChild(thead);
+  //     }
+  //     for (d of data) {
+  //       console.log("for loop", d);
+  //       let row = document.createElement("tr");
+  //       let cell = document.createElement("td");
+  //       let cellText = document.createTextNode(d.state);
+  //       cell.appendChild(cellText);
+  //       row.appendChild(cell);
+  //       for (f of filters) {
+  //         let propName = f.charAt(0).toLowerCase() + f.substring(1);
+  //         console.log("word", propName);
+  //         if (d.actuals[propName]) {
+  //           console.log("found", d.actuals[propName]);
+  //           //make a table row
+  //           let cell = document.createElement("td");
+  //           let cellText = document.createTextNode(d.actuals[propName]);
+  //           cell.appendChild(cellText);
+  //           row.appendChild(cell);
+  //         } else {
+  //           console.log("not found");
+  //         }
+  //       }
+  //       tableBody.appendChild(row);
+  //     }
+  //     table.appendChild(tableBody);
+  //     table.setAttribute("border", "2");
+  //   }
+  //   // If filters is empty make a table with all of the data
+  //   if (filterBtn.length === 0) {
+  //     for (d of data) {
+  //       //make the rows and columns
+  //       console.log("d.actuals", d.actuals);
+  //       let row = document.createElement("tr");
+  //       let cell = document.createElement("td");
+  //       let cellText = document.createTextNode(d.actuals);
+  //     }
   //   } else {
   //     //check if data is iterable
   //     console.log(data.length, filters);
@@ -148,57 +215,4 @@ function makeTables(data, filters) {
   //     table.setAttribute("border", "2");
   //   }
   // }
-  //If filters is empty make a table with all of the data
-  // if (filterBtn.length === 0) {
-  //   for (d of data) {
-  //     //make the rows and columns
-  //     console.log("d.actuals", d.actuals);
-  //     let row = document.createElement("tr");
-  //     let cell = document.createElement("td");
-  //     let cellText = document.createTextNode(d.actuals);
-  //   }
-  // } else {
-  //   //check if data is iterable
-  //   console.log(data.length, filters);
-  //   let headText = document.createTextNode("State");
-  //   let thead = document.createElement("th");
-  //   thead.appendChild(headText);
-  //   table.appendChild(thead);
-  //   for (let i = 0; i < filters.length; i++) {
-  //     let headText = document.createTextNode(filters[i]);
-  //     let thead = document.createElement("th");
-  //     console.log("headText", headText);
-  //     thead.appendChild(headText);
-  //     table.appendChild(thead);
-  //   }
-  //   for (d of data) {
-  //     console.log("for loop", d);
-  //     let row = document.createElement("tr");
-  //     let cell = document.createElement("td");
-  //     let cellText = document.createTextNode(d.state);
-  //     cell.appendChild(cellText);
-  //     row.appendChild(cell);
-  //     for (f of filters) {
-  //       let propName = f.charAt(0).toLowerCase() + f.substring(1);
-  //       console.log("word", propName);
-  //       if (d.actuals[propName]) {
-  //         console.log("found", d.actuals[propName]);
-  //         //make a table row
-  //         let cell = document.createElement("td");
-  //         let cellText = document.createTextNode(d.actuals[propName]);
-  //         cell.appendChild(cellText);
-  //         row.appendChild(cell);
-  //       } else {
-  //         console.log("not found");
-  //       }
-  //     }
-  //     tableBody.appendChild(row);
-  //   }
-  //   table.appendChild(tableBody);
-  //   table.setAttribute("border", "2");
-  // }
-  //for the columns take the length of filters
-  //for the rows, make a check to only read the data that has the words that filters has.
-  //the way you make these is after iterating
-  //table (look at link for further help" https://stackoverflow.com/questions/14643617/create-table-using-javascript)
 }
