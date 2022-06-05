@@ -8,7 +8,8 @@
   <title>Covid-19 Tracker</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/style.css">
-
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2VaO0gJnfCF6DydgeBzK0GYgOfST-sIE&libraries=places&callback=initAutocomplete"></script>
 </head>
 
 <body>
@@ -29,7 +30,6 @@
         </div>
       </div>
     </div>
-    </div>
   </section>
 
   <aside>
@@ -41,7 +41,7 @@
             <div class="notification is-primary is-size-3">
               <form id="search-form">
                 <!-- Toggle filters -->
-                <button class="button filterBtn"> Filters </button>
+                <a class="button filterBtn"> Filters </a>
                 <!-- The button toggle group (checkboxes) -->
                 <div class="filterOptions hidden">
                   <label class="checkbox">
@@ -50,7 +50,7 @@
                   </label>
                   <label class="checkbox">
                     <input type="checkbox" name="filter">
-                    Deaths
+                    deaths
                   </label>
                   <label class="checkbox">
                     <input type="checkbox" name="filter">
@@ -135,6 +135,12 @@
                 </div>
               </form>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <table class="results-table">
+    </table>
   </aside>
 </body>
 

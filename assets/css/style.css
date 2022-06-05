@@ -53,3 +53,9 @@ section {
     font-size: 30px;
 }
 
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
