@@ -87,132 +87,131 @@ function isIterable(obj) {
   return typeof obj[Symbol.iterator] === 'function';
 }
 
+let tableBody = document.createElement("tbody");
+
+function singleData(data, filters) {
+  if (filters.length === 0) {
+    let propNames = Object.keys(data.actuals);
+    let headText = document.createTextNode(data.state);
+    let thead = document.createElement("th");
+    thead.appendChild(headText);
+    table.appendChild(thead);
+    for (p of propNames) {
+      let row = document.createElement("tr");
+      let cellText = document.createTextNode(p);
+      let cell = document.createElement("td");
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+      tableBody.appendChild(row);
+      cellText = document.createTextNode(data.actuals[p]);
+      cell = document.createElement("td");
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+      tableBody.appendChild(row);
+    }
+    table.appendChild(tableBody);
+    table.setAttribute("border", "2");
+  }
+  if (filters.length > 0) {
+    let headText = document.createTextNode(data.state);
+    let thead = document.createElement("th");
+    thead.appendChild(headText);
+    table.appendChild(thead);
+    for (f of filters) {
+      let propName = f.charAt(0).toLowerCase() + f.substring(1);
+      let row = document.createElement("tr");
+      let cellText = document.createTextNode(propName);
+      let cell = document.createElement("td");
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+      tableBody.appendChild(row);
+      cellText = document.createTextNode(data.actuals[propName]);
+      cell = document.createElement("td");
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+      tableBody.appendChild(row);
+    }
+    table.appendChild(tableBody);
+    table.setAttribute("border", "2");
+  }
+}
+
+//@data ARRAY of OBJS
+//@filters ARRAY 
+function multipleData(data, filters) {
+  if (filters.length > 0) {
+    for (f of filters) {
+      let headText = document.createTextNode(f);
+      let thead = document.createElement("th");
+      thead.appendChild(headText);
+      table.appendChild(thead);
+    }
+    for (d of data) {
+      let row = document.createElement("tr");
+      let cell = document.createElement("td");
+      let cellText = document.createTextNode("writes the states");
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+      for (f of filters) {
+        let propName = f.charAt(0).toLowerCase() + f.substring(1);
+        if (d.actuals[propName]) {
+          let cell = document.createElement("td");
+          let cellText = document.createTextNode(d.actuals[propName]);
+          cell.appendChild(cellText);
+          row.appendChild(cell);
+        } else {
+          console.log("not found");
+        }
+      }
+      tableBody.appendChild(row);
+    }
+    table.appendChild(tableBody);
+    table.setAttribute("border", "2");
+  }
+  // If filters is empty make a table with all of the data
+  if (filters.length === 0) {
+    //I need to get all the property names first
+    let propNames = Object.keys(data[0].actuals);
+    //I need to make all this data the header
+    for (p of propNames) {
+      let headText = document.createTextNode(propNames[i]);
+      let thead = document.createElement("th");
+      thead.appendChild(headText);
+      table.appendChild(thead);
+    }
+    for (d of data) {
+      let row = document.createElement("tr");
+      let cell = document.createElement("td");
+      let cellText = document.createTextNode(d.state);
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+      for (prop of propNames) {
+        if (d.actuals[prop]) {
+          let cell = document.createElement("td");
+          let cellText = document.createTextNode(d.actuals[prop]);
+          cell.appendChild(cellText);
+          row.appendChild(cell);
+        } else {
+          console.log("not found");
+        }
+      }
+      tableBody.appendChild(row);
+    }
+    table.appendChild(tableBody);
+    table.setAttribute("border", "2");
+  }
+}
+
 //@filter ARRAY of STRINGS
 //@data ARRAY of OBJs
 function makeTables(data, filters) {
-  console.log("isIterable", !isIterable(data));
-  console.log("data", data.actuals)
-  let tableBody = document.createElement("tbody");
   let headText = document.createTextNode("State");
-  let stateText = document.createTextNode(data.state)
-  let thead1 = document.createElement("th");
-  let thead2 = document.createElement("th");
-  thead1.appendChild(headText);
-  thead2.appendChild(stateText);
-  table.appendChild(thead1)
-  table.appendChild(thead2);
-  //If object is not iterable
-  //check if data is iterable
-  if (!isIterable(data)) {
-    //get all the keys for the table headers
-    let headers = Object.keys(data.actuals);
-    console.log(headers);
-    if (filters.length === 0) {
-      let row = document.createElement("tr");
-      let cell = document.createElement("td");
-      let cellText = document.createTextNode("hello");
-      for (let i = 0; i < headers.length; i++) {
-        
-        for (h of headers) {
-          let row = document.createElement("tr");
-          let cell = document.createElement("td");
-          let cellText = document.createTextNode("ur looking fo me");
-          cell.appendChild(cellText);
-          row.appendChild(cell);
-          table.appendChild(row);
-          //make the rows and columns
-        }
-      }
-      cell.appendChild(cellText);
-      row.appendChild(cell);
-      table.appendChild(row);
-
-      table.appendChild(tableBody);
-      table.setAttribute("border", "2");
-    }
+  let thead = document.createElement("th");
+  thead.appendChild(headText);
+  table.appendChild(thead);
+  if (isIterable(data)) {
+    multipleData(data, filters);
+  } else {
+    singleData(data, filters);
   }
-  // else if (isIterable(data)) {
-  //   if (filters.length > 0) {
-  //     for (let i = 0; i < filters.length; i++) {
-  //       let headText = document.createTextNode(filters[i]);
-  //       let thead = document.createElement("th");
-  //       thead.appendChild(headText);
-  //       table.appendChild(thead);
-  //     }
-  //     for (d of data) {
-  //       console.log("for loop", d);
-  //       let row = document.createElement("tr");
-  //       let cell = document.createElement("td");
-  //       let cellText = document.createTextNode(d.state);
-  //       cell.appendChild(cellText);
-  //       row.appendChild(cell);
-  //       for (f of filters) {
-  //         let propName = f.charAt(0).toLowerCase() + f.substring(1);
-  //         console.log("word", propName);
-  //         if (d.actuals[propName]) {
-  //           console.log("found", d.actuals[propName]);
-  //           //make a table row
-  //           let cell = document.createElement("td");
-  //           let cellText = document.createTextNode(d.actuals[propName]);
-  //           cell.appendChild(cellText);
-  //           row.appendChild(cell);
-  //         } else {
-  //           console.log("not found");
-  //         }
-  //       }
-  //       tableBody.appendChild(row);
-  //     }
-  //     table.appendChild(tableBody);
-  //     table.setAttribute("border", "2");
-  //   }
-  //   // If filters is empty make a table with all of the data
-  //   if (filterBtn.length === 0) {
-  //     for (d of data) {
-  //       //make the rows and columns
-  //       console.log("d.actuals", d.actuals);
-  //       let row = document.createElement("tr");
-  //       let cell = document.createElement("td");
-  //       let cellText = document.createTextNode(d.actuals);
-  //     }
-  //   } else {
-  //     //check if data is iterable
-  //     console.log(data.length, filters);
-  //     let headText = document.createTextNode("State");
-  //     let thead = document.createElement("th");
-  //     thead.appendChild(headText);
-  //     table.appendChild(thead);
-  //     for (let i = 0; i < filters.length; i++) {
-  //       let headText = document.createTextNode(filters[i]);
-  //       let thead = document.createElement("th");
-  //       console.log("headText", headText);
-  //       thead.appendChild(headText);
-  //       table.appendChild(thead);
-  //     }
-  //     for (d of data) {
-  //       console.log("for loop", d);
-  //       let row = document.createElement("tr");
-  //       let cell = document.createElement("td");
-  //       let cellText = document.createTextNode(d.state);
-  //       cell.appendChild(cellText);
-  //       row.appendChild(cell);
-  //       for (f of filters) {
-  //         let propName = f.charAt(0).toLowerCase() + f.substring(1);
-  //         console.log("word", propName);
-  //         if (d.actuals[propName]) {
-  //           console.log("found", d.actuals[propName]);
-  //           //make a table row
-  //           let cell = document.createElement("td");
-  //           let cellText = document.createTextNode(d.actuals[propName]);
-  //           cell.appendChild(cellText);
-  //           row.appendChild(cell);
-  //         } else {
-  //           console.log("not found");
-  //         }
-  //       }
-  //       tableBody.appendChild(row);
-  //     }
-  //     table.appendChild(tableBody);
-  //     table.setAttribute("border", "2");
-  //   }
-  // }
 }
