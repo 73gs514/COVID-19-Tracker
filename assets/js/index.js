@@ -14,29 +14,38 @@ const table = document.querySelector(".results-table");
 //@ type STING optional
 
 function getCovidData(apiKey, place) {
-  fetch(`https://api.covidactnow.org/v2/state/NY.json?apiKey=${apiKey}`)
+  fetch(`https://api.covidactnow.org/v2/state/${place}.json?apiKey=${apiKey}`)
     .then(res => res.json())
     //call another function that will display in table
     .then(res => makeTables(res, labels));
 }
 
-function getCovidKey() {
+function getCovidKey(place) {
   fetch("../../apiKeys.json")
     .then(res => res.json())
-    .then(res => getCovidData(res.covidNowKey));
+    .then(res => getCovidData(res.covidNowKey, place));
 };
 
 searchBtn.addEventListener("click", function () {
   //gives you filters
   getChecked();
+  //get the place;
+  let place = onPlaceChanged().address_components[0].short_name;
   //give you data
-  getCovidKey();
+  getCovidKey(place);
 });
 
 let autocomplete;
 
+
 function initAutocomplete() {
-  autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
+  const options = {
+    componentRestrictions: { country: "us" },
+    fields: ["address_components", "geometry"],
+    strictBounds: false,
+    types: ["administrative_area_level_1"],
+  };
+  autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), options);
   autocomplete.addListener('place_changed', onPlaceChanged);
 }
 
@@ -46,8 +55,8 @@ function onPlaceChanged() {
     document.getElementById('autocomplete').placeholder =
       'Enter a place';
   } else {
-    // document.getElementById('details').innerHTML = place.name;
-    console.log(place)
+    // console.log(place);
+    return place;
   }
 }
 
