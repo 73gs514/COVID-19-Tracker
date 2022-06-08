@@ -11,7 +11,9 @@ const table = document.querySelector(".table");
 //@ apiKey STRING Required
 //@ place STRING optional
 //@ type STING optional
+
 function getCovidData(apiKey, place, type) {
+    console.log("getCovidData")
     fetch(`https://api.covidactnow.org/v2/states.json?apiKey=${apiKey}`)
         .then(res => res.json())
         .then(res => {
@@ -23,18 +25,25 @@ function getCovidData(apiKey, place, type) {
 
 function getCovidKey() {
     console.log("inside getCovidKey")
-    fetch("../../apiKeys.json")
+    var url = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/js?key=AIzaSyC2VaO0gJnfCF6DydgeBzK0GYgOfST-sIE&libraries=places&callback=initAutocomplete"
+    console.log(url)
+    fetch(url)
         .then(res => {
             console.log("inside .then of covidKey()")
+            console.log("res", res)
             return res.json();
         })
         .then(res => {
             console.log("res", res);
-            getCovidData(res.covidNowKey);
+            // getCovidData(res.covidNowKey);
+        })
+        .catch(function (err) {
+            console.log(err)
         });
 };
 
 searchBtn.addEventListener("click", function() {
+    console.log("searchBtn.addEventListener")
     //gives you filters
     getChecked();
     //give you data
@@ -44,12 +53,15 @@ searchBtn.addEventListener("click", function() {
 let autocomplete;
 
 function initAutocomplete() {
+    console.log("initAutocomplete")
     autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
     componentRestrictions: {'country' ['US']}
     autocomplete.addListener('place_changed', onPlaceChanged);
 }
 
+
 function onPlaceChanged() {
+    console.log("onPlaceChanged")    
     var place = autocomplete.getPlace();
     if (!place.geometry) {
 
@@ -62,6 +74,7 @@ function onPlaceChanged() {
 
 //getChecked returns an ARRAY of filters to narrow what displays on the table
 const getChecked = () => {
+    console.log("getChecked") 
     //@ marked ARRAY of input type=CHECKBOX
     let marked = document.getElementsByName("filter");
     labels = [];
