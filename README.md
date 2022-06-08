@@ -3,7 +3,7 @@
 ## Description
 * Our app pulls from 2 seperate server-side API's, one for the search parameters and the other for statistics on C19 related cases. 
 * User can search within United States only narrowing down to state, city and county levels respectively. 
-* The app also provides the user with up to 20 other categories to search for.
+* The app also provides the user with up to 20 other categories to fitler a search.
 
 ## Project Requirements
 * Use a CSS framework other than Bootstrap.
@@ -26,10 +26,9 @@
 * Links to the deployed application and the GitHub repository
 
 ## Link
-[Placeholder](URL)
+[COVID-19 Tracker](https://73gs514.github.io/COVID-19-Tracker/)
 
 
 ## Screenshot
-
-
+![screenshot](./assets/images/Screenshot.png)
 
