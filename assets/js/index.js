@@ -13,6 +13,44 @@ const table = document.querySelector(".results-table");
 //@ place STRING optional
 //@ type STING optional
 
+<<<<<<< HEAD
+function getCovidData(apiKey, place, type) {
+    console.log("getCovidData")
+    fetch(`https://api.covidactnow.org/v2/states.json?apiKey=${apiKey}`)
+        .then(res => res.json())
+        .then(res => {
+            console.log("covid res", res);
+            //call another function that will display in table
+            makeTables(res, labels);
+        });
+}
+
+function getCovidKey() {
+    console.log("inside getCovidKey")
+    var url = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/js?key=AIzaSyC2VaO0gJnfCF6DydgeBzK0GYgOfST-sIE&libraries=places&callback=initAutocomplete"
+    console.log(url)
+    fetch(url)
+        .then(res => {
+            console.log("inside .then of covidKey()")
+            console.log("res", res)
+            return res.json();
+        })
+        .then(res => {
+            console.log("res", res);
+            // getCovidData(res.covidNowKey);
+        })
+        .catch(function (err) {
+            console.log(err)
+        });
+};
+
+searchBtn.addEventListener("click", function() {
+    console.log("searchBtn.addEventListener")
+    //gives you filters
+    getChecked();
+    //give you data
+    getCovidKey();
+=======
 function getCovidData(apiKey, place) {
   fetch(`https://api.covidactnow.org/v2/state/${place}.json?apiKey=${apiKey}`)
     .then(res => res.json())
@@ -33,12 +71,19 @@ searchBtn.addEventListener("click", function () {
   let place = onPlaceChanged().address_components[0].short_name;
   //give you data
   getCovidKey(place);
+>>>>>>> 2014a589780a0c09a06e565faf9d9617b85aaa22
 });
 
 let autocomplete;
 
 
 function initAutocomplete() {
+<<<<<<< HEAD
+    console.log("initAutocomplete")
+    autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'));
+    componentRestrictions: {'country' ['US']}
+    autocomplete.addListener('place_changed', onPlaceChanged);
+=======
   const options = {
     componentRestrictions: { country: "us" },
     fields: ["address_components", "geometry"],
@@ -47,9 +92,22 @@ function initAutocomplete() {
   };
   autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), options);
   autocomplete.addListener('place_changed', onPlaceChanged);
+>>>>>>> 2014a589780a0c09a06e565faf9d9617b85aaa22
 }
 
+
 function onPlaceChanged() {
+<<<<<<< HEAD
+    console.log("onPlaceChanged")    
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+
+        document.getElementById('autocomplete').placeholder = 'Enter a place';
+    } else 
+        {console.log(place)}
+    
+
+=======
   var place = autocomplete.getPlace();
   if (!place.geometry) {
     document.getElementById('autocomplete').placeholder =
@@ -58,10 +116,23 @@ function onPlaceChanged() {
     // console.log(place);
     return place;
   }
+>>>>>>> 2014a589780a0c09a06e565faf9d9617b85aaa22
 }
 
 //getChecked returns an ARRAY of filters to narrow what displays on the table
 const getChecked = () => {
+<<<<<<< HEAD
+    console.log("getChecked") 
+    //@ marked ARRAY of input type=CHECKBOX
+    let marked = document.getElementsByName("filter");
+    labels = [];
+    //@ m is an individual checkbox elem of ARRAY marked
+    //Each m has an ARRAY of labels of length 1
+    for (let m of marked) {
+        if (m.checked) {
+            labels.push(m.labels[0].innerText.replace(/\s/g, ""));
+        }
+=======
   //@ marked ARRAY of input type=CHECKBOX
   let marked = document.getElementsByName("filter");
   labels = [];
@@ -70,6 +141,7 @@ const getChecked = () => {
   for (let m of marked) {
     if (m.checked) {
       labels.push(m.labels[0].innerText.replace(/\s/g, ""));
+>>>>>>> 2014a589780a0c09a06e565faf9d9617b85aaa22
     }
   }
 }
